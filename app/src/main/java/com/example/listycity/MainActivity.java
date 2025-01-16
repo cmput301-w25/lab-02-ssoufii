@@ -23,57 +23,54 @@ public class MainActivity extends AppCompatActivity {
     ListView cityList;
     ArrayAdapter<String> cityAdapter;
     ArrayList<String> cities;
-    EditText cityInput;
+    int selectedCity = -1;//holds current position of selected city
+
+    EditText cityInput; //this UI component lets us type the city name
     Button addCityButton, deleteCityButton;
-    int selectedCity = -1; // Keeps track of the selected city's position
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState); //calls the onCreate() method from the parent class (AppCompatActivity) to initialize the activity correctly
+        setContentView(R.layout.activity_main); //this the actual link between this file and the layout file activity main
 
-        // Link views to their XML IDs
+        //*** VERY necessary links between the java variables used later and their corresponding UI elements in activity_main
         cityList = findViewById(R.id.city_list);
         cityInput = findViewById(R.id.city_input);
+
+
         addCityButton = findViewById(R.id.confirm);
         deleteCityButton = findViewById(R.id.delete_city);
 
-        // Initialize the list with two cities
         cities = new ArrayList<>();
-        cities.add("Edmonton");
-        cities.add("Vancouver");
 
-        // Set up the adapter to show cities in the ListView
+        cities.add("Edmonton"); //initially putting one city
+
         cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, cities);
-        cityList.setAdapter(cityAdapter);
+        cityList.setAdapter(cityAdapter); //this adapter connect the cities list to the ListView
 
-        // Highlight the clicked city
+        // highlight the clicked city
         cityList.setOnItemClickListener((parent, view, position, id) -> {
-            selectedCity = position; // Save which city is selected
-            cityList.setItemChecked(position, true); // Highlight the selected city
+            selectedCity = position; // save which city is selected
+            cityList.setItemChecked(position, true);
         });
 
         // Add a new city when "Confirm" is clicked
         addCityButton.setOnClickListener(v -> {
-            String newCity = cityInput.getText().toString().trim();
-            if (!newCity.isEmpty()) {
-                cities.add(newCity); // Add the city to the list
-                cityAdapter.notifyDataSetChanged(); // Update the ListView
-                cityInput.setText(""); // Clear the input field
-            } else {
-                Toast.makeText(this, "Enter a city name", Toast.LENGTH_SHORT).show();
-            }
+            String newCity = cityInput.getText().toString(); //retrival
+            if (!newCity.isEmpty()) { //has something been typed?????yes
+                cities.add(newCity); // then, add the city to the list
+                cityAdapter.notifyDataSetChanged(); // update the ListView
+                cityInput.setText("");
+            } //nothing if else
         });
 
         // Delete the selected city when "Delete City" is clicked
         deleteCityButton.setOnClickListener(v -> {
             if (selectedCity != -1) {
-                cities.remove(selectedCity); // Remove the selected city
-                cityAdapter.notifyDataSetChanged(); // Update the ListView
-                cityList.clearChoices(); // Clear the selection
-                selectedCity = -1; // Reset the selected city
-            } else {
-                Toast.makeText(this, "Select a city to delete", Toast.LENGTH_SHORT).show();
+                cities.remove(selectedCity);
+                cityAdapter.notifyDataSetChanged();
+                cityList.clearChoices();
+                selectedCity = -1; // this a reset on the selected city
             }
         });
     }
