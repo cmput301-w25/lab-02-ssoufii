@@ -1,20 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--these act like boxes in React-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
 
+<!-- Listy City header + icon to jazz it up -->
+    <!-- in xml, inner workings are indented-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Listy City"
+            android:textColor="@android:color/black"
+            android:gravity="center_vertical"
+            android:textSize="35sp"/>
+
+
+        <ImageView
+            android:id="@+id/titles_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/the_apps_icon"
+            android:src="@drawable/icon" /> <!--put pictures in drawable and this is how you access it + DONT put extension code-->
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp">
+
+            <Button
+            android:id="@+id/delete_city"
+            android:layout_width = "0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_red_dark"
+                android:text="DELETE CITY"
+                android:layout_margin="8dp"
+
+                />
+
+            <Button
+                android:id="@+id/add_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:text="ADD CITY"
+                android:textColor="@android:color/white"
+                android:layout_margin="8dp" />
+
+
+
+                />
+
+    </LinearLayout>
+
+    <!-- It seems like these components all need an ID and height and width -->
+
+<!--
+        Lists the name of the cities currently in list. Will start with 2 -edmonton and vancouver
+-->
     <ListView
         android:id="@+id/city_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Click_Button"
-        >
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp" />
 
-
-    </ListView>
 
 </LinearLayout>
+
+
