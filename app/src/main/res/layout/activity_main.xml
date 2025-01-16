@@ -81,6 +81,8 @@
 <!--
         Lists the name of the cities currently in list. Will start with 2 -edmonton and vancouver
 -->
+
+
     <ListView
         android:id="@+id/city_list"
         android:layout_width="match_parent"
@@ -88,6 +90,31 @@
         android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
+<!--ddd-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@android:color/transparent">
+
+        <EditText
+            android:id="@+id/city_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/edit_text" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
+            android:layout_margin="8dp" />
+    </LinearLayout>
 
 
 </LinearLayout>
